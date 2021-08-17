@@ -97,7 +97,7 @@ class ProjectController extends Controller
     //get active projects related with the developer
     public function active($id)
     {
-        return DB::table('projects')->where('developer_id', $id)->get();
+        return DB::table('projects')->where('developer_id', $id)->where('projects.status','processing')->get();
     }
 
     public function recent($category_id)
