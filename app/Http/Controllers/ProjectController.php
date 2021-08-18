@@ -20,7 +20,7 @@ class ProjectController extends Controller
             ->join('users', 'users.id', '=', 'projects.owner_id')
             ->select('users.name', 'users.lname','users.image as avatar','users.rate as user_rate','categories.name as cat_name', 'projects.*')
             ->get();
-            
+
         return $project;
     }
 

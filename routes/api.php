@@ -106,6 +106,7 @@ Route::get('/project/recent/{categry_id}',[ProjectController::class,'recent']);
 
 Route::get('/categories',[CategoryController::class,'index']);
 Route::get('/categories/{categoryname}',[CategoryController::class,'show']);
+
 //project
 Route::get('/project',[ProjectController::class,'index']);
 //Route::get('/project/{id}',[ProjectController::class,'show']);
