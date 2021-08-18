@@ -15,7 +15,8 @@ class PurposalResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'project_name'=> $this->project_name,
+            
+            'title'=> $this->title,
             'description'=> $this->description,
             'rate'=> $this->rate,
             'owner_id'=> $this->owner_id,

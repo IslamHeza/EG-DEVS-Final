@@ -147,7 +147,6 @@ return [
             'TCG\\Voyager\\Widgets\\UserDimmer',
             'TCG\\Voyager\\Widgets\\CategoryDimmer',
             'TCG\\Voyager\\Widgets\\ProjectDimmer',
-
         ],
 
     ],

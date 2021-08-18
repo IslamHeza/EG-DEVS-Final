@@ -16,7 +16,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return project::all();
+        $project = Project::join('categories', 'projects.category_id', '=', 'categories.id')
+            ->join('users', 'users.id', '=', 'projects.owner_id')
+            ->select('users.name', 'users.lname','users.image as avatar','users.rate as user_rate','categories.name as cat_name', 'projects.*')
+            ->get();
+            
+        return $project;
     }
 
     /**
@@ -43,9 +48,9 @@ class ProjectController extends Controller
    public function gettProject($id)
     {
         $project = Project::join('categories', 'projects.category_id', '=', 'categories.id')
-            ->join('users', 'users.id', '=', 'projects.developer_id')
+            ->join('users', 'users.id', '=', 'projects.owner_id')
             ->where('projects.id', $id)
-            ->select('users.name', 'users.lname', 'categories.name as cat_name', 'projects.*')
+            ->select('users.name', 'users.lname','users.image as avatar','users.rate as user_rate','categories.name as cat_name', 'projects.*')
             ->first();
         return $project;
     }
@@ -105,7 +110,7 @@ class ProjectController extends Controller
         $projects = Project::join('users', 'projects.owner_id', '=', 'users.id')
         ->where('projects.category_id', $category_id)
         ->where('projects.status', 'pending')
-        ->select('projects.id','projects.project_name' ,'projects.description','projects.created_at','users.image' , 'users.name','users.lname' )
+        ->select('projects.id','projects.title' ,'projects.description','projects.created_at','users.image' , 'users.name','users.lname' )
         ->limit(5)
         ->get();
 

@@ -24,7 +24,7 @@ class PurposalController extends Controller
     {
         $purposals = Purposal::join('projects', 'purposals.project_id', '=', 'projects.id')
             ->join('users', 'users.id', '=', 'purposals.developer_id')
-            ->select('users.name', 'users.lname', 'users.image' ,'projects.project_name as project_name', 'purposals.*')
+            ->select('users.name', 'users.lname', 'users.image' ,'projects.title as title', 'purposals.*')
             ->get();
 
         return ($purposals);
@@ -58,7 +58,7 @@ class PurposalController extends Controller
         $purposal = Purposal::join('projects', 'purposals.project_id', '=', 'projects.id')
             ->join('users', 'users.id', '=', 'purposals.developer_id')
             ->where('purposals.id', $id)
-            ->select('users.name', 'users.lname', 'users.image' ,'projects.project_name as project_name', 'purposals.*')
+            ->select('users.name', 'users.lname', 'users.image' ,'projects.title as title', 'purposals.*')
             ->first();
         return $purposal;
     }

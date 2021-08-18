@@ -9,16 +9,17 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'project_name',
+        'title',
         'description',
         'rate',
         'budget',
-        // 'final_price',
+        'final_price',
         'location',
         'status',
         'owner_id',
         'developer_id',
-        'category_id'
+        'category_id',
+        'image'
 
     ];
     public function client(){

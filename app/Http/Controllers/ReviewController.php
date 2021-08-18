@@ -38,7 +38,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::Join('users' , 'users.id' , '=' , 'reviews.rater_id')
         ->join('projects' , 'projects.id' , '=' , 'reviews.project_id')
-        ->select('reviews.*' , 'projects.project_name', 'users.name' , 'users.lname' , 'users.image')
+        ->select('reviews.*' , 'projects.title', 'users.name' , 'users.lname' , 'users.image')
         ->where('reviews.ratee_id' , $id)
         ->get();
         return $reviews;
