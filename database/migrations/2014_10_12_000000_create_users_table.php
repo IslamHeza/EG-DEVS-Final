@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->string('national_id')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default("user.png");
             $table->string('city')->nullable();
             $table->string('street')->nullable();
             $table->string('overview')->nullable()->default("Threre is No Overview");

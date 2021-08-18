@@ -70,7 +70,6 @@ Route::put('/purposal/{id}',[PurposalController::class,'update']);
 
 //========================================================================//
 
-
 //mohamed Start users routes
 Route::get('/users',[UserController::class,'index']);
 Route::get('/users/{id}',[UserController::class,'show']);
