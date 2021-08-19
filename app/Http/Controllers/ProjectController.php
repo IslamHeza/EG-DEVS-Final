@@ -6,9 +6,11 @@ use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
+header('Access-Control-Allow-Origin: *');
 
 class ProjectController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -30,10 +32,31 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request , $id)
     {
-        return project::create($request->all());
-    }
+        // return project::create($request->all());
+        $file = $request->file('file');
+        $project = new Project() ;
+
+        if($request->hasFile('file')){
+            $fileName=$file->getClientOriginalName() ;
+            $file->move(public_path('/storage/projects/files'),$fileName) ;
+            $project->file = $fileName ;
+        }
+            $project->title = $request->title;
+            $project->description = $request->description;
+            $project->budget = $request->budget;
+            $project->location =  $request->location;
+            $project->category_id = $request->categeory;
+            $project->owner_id = $id ;
+            $project->save();
+        }
+
+        public function download($fileName){
+            return response()->download(public_path('/storage/projects/files/'.$fileName));
+        }
+
+    
 
     /**
      * Display the specified resource.

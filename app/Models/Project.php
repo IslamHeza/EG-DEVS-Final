@@ -19,7 +19,7 @@ class Project extends Model
         'owner_id',
         'developer_id',
         'category_id',
-        'image'
+        'file'
 
     ];
     public function client(){

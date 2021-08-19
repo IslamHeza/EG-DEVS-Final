@@ -25,6 +25,7 @@ class PurposalResource extends JsonResource
             'budget'=> $this->budget,
             'location'=> $this->location,
             'status'=> $this->status,
+            'file'=> $this->file,
 
 
 

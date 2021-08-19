@@ -112,8 +112,13 @@ Route::get('/project',[ProjectController::class,'index']);
 //Route::get('/project/{id}',[ProjectController::class,'show']);
 Route::get('/project/{id}',[ProjectController::class,'gettProject']);
  Route::post('/project',[ProjectController::class,'store']);
+ Route::post('/project/{id}',[ProjectController::class,'store']);
 Route::put('/project/{id}',[ProjectController::class,'update']);
 Route::delete('/project/{id}',[ProjectController::class,'destroy']);
+
+
+Route::get('/download/{fileName}',[ProjectController::class,'download']);
+
 
 
 
