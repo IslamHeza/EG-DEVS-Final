@@ -19,8 +19,9 @@ class CreateProjectsTable extends Migration
             $table->string("description");
             $table->integer("rate")->default(0);
             $table->integer("budget");
-            // $table->integer("final_price");
+            $table->integer("final_price");
             $table->string("location");
+            $table->string("file");
             $table->string('status')->nullable()->default("pending");
             // $table->enum('status', ['done', 'proccessing','pending']);
             $table->timestamps();

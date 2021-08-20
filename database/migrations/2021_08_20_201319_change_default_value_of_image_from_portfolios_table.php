@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameImageFromProjectsTable extends Migration
+class ChangeDefaultValueOfImageFromPortfoliosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class RenameImageFromProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->renameColumn('image','file' );
-        }); 
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->string('images')->default("default.jpeg")->change();
+
+        });
     }
 
     /**
@@ -25,7 +26,7 @@ class RenameImageFromProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
+        Schema::table('portfolios', function (Blueprint $table) {
             //
         });
     }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\portfolio;
 use App\Models\PortfolioSkill;
-use App\Models\PortfolioImage ;
+use App\Models\PortfolioImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,34 +20,45 @@ class PortfolioController extends Controller
     public function index()
     {
         return portfolio::all();
+
     }
     // 
+    public function all($id)
+    {
+        $result = portfolio::where('user_id',$id)->get();  
+        return $result ;
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request , $id )
+    public function store(Request $request, $id)
     {
         $image = $request->file('image');
-        if($request->hasFile('image')){
-            $imgName=rand().'.'.$image->getClientOriginalExtension();
-            $image->move(public_path('/storage/images/portfolios'),$imgName);
+        $portfolio = new Portfolio();
 
-            $portfolio = new Portfolio() ;
-            $portfolio->images = $imgName ;
-            $portfolio->name = $request->name;
-            $portfolio->description = $request->description;
-            $portfolio->link = $request->link;
-            $portfolio->skills = explode(",", $request->skills);
-            $portfolio->user_id = $id ;
-            $portfolio->save();
-            return response()->json("done .. thx");
-        }else{
-            return response()->json('image null');
+        if ($request->hasFile('image')) {
+            $imgName = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('/storage/portfolios'), $imgName);
+            $portfolio->images = $imgName;
         }
-                // $input = $request->only('name', 'description','link','user_id','skills');
+        $portfolio->name = $request->name;
+        $portfolio->description = $request->description;
+        $portfolio->link = $request->link;
+
+        if ($request->skills != null) {
+            $portfolio->skills = explode(",", $request->skills);
+        }
+        $portfolio->user_id = $id;
+        $portfolio->save();
+
+        return response()->json("done .. thx");
+
+        // $input = $request->only('name', 'description','link','user_id','skills');
         //     return portfolio::create($input);
 
     }
@@ -90,13 +101,7 @@ class PortfolioController extends Controller
     //get count of portfolio
     public function count($user_id)
     {
-        $count=portfolio::where('user_id',$user_id)->count();
+        $count = portfolio::where('user_id', $user_id)->count();
         return $count;
     }
-
-
-
-
 }
-
-

@@ -17,8 +17,9 @@ class CreatePortfoliosTable extends Migration
             $table->id();
             $table->string("name");
             $table->string("description");
-            $table->string("image");
-            $table->json("skills");
+            $table->string("link");
+            $table->string("image")->default('default.jpeg');
+            $table->json("skills")->nullable();
             $table->json('images');
             $table->timestamps();
         });
