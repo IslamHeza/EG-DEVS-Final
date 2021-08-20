@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddImageToProjectsTable extends Migration
+class AddLinkToPortfolios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddImageToProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->string('image')->nullable();
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->string('link');
         });
     }
 
@@ -25,8 +25,8 @@ class AddImageToProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            //
+        Schema::table('portfolios', function (Blueprint $table) {
+            $table->dropColumn('link');
         });
     }
 }

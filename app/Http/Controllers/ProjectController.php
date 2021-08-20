@@ -56,7 +56,7 @@ class ProjectController extends Controller
             return response()->download(public_path('/storage/projects/files/'.$fileName));
         }
 
-    
+
 
     /**
      * Display the specified resource.
