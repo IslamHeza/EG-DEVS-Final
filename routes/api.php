@@ -8,6 +8,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\ContactController;
+
 
 use App\Models\Review;
 use App\Models\User;
@@ -120,6 +122,7 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 Route::get('/download/{fileName}',[ProjectController::class,'download']);
 
 
+Route::post('/contact',[ContactController::class,'store']);
 
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {

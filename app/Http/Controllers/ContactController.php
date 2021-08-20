@@ -14,11 +14,12 @@ class ContactController extends Controller
         return  $contact;
     }
 
-    public function store(Request $request , $id )
+    public function store(Request $request )
     {
         $contact = new Contact() ;
         $contact->name = $request['name'];
         $contact->email = $request['email'];
-        $contact->lname = $request['message'];
+        $contact->message = $request['message'];
+        $contact->save() ;
     }
 }
