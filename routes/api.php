@@ -80,6 +80,30 @@ Route::put('/project/{id}',[ProjectController::class,'update']);
 
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
+//     //users
+//     Route::post('/users',[UserController::class,'store']);
+//     Route::put('/users/{id}',[UserController::class,'update']);
+//     Route::delete('/users/{id}',[UserController::class,'destroy']);
+//     Route::post('upload/{id}',[UploadController::class,'upload']);
+
+//     //projects
+
+
+//     Route::delete('/project/{id}',[ProjectController::class,'destroy']);
+
+//     //portofolios
+
+
+//    //purposals
+//    Route::post('/purposal',[PurposalController::class,'store']);
+//    Route::put('/purposal/{id}',[PurposalController::class,'update']);
+//    Route::post('/reviews',[ReviewController::class,'store']);
+
+
+//     //logout
+//     Route::post('/logout',[AuthController::class,'logout']);
+
+});
     //users
     Route::post('/users',[UserController::class,'store']);
     Route::put('/users/{id}',[UserController::class,'update']);
@@ -102,8 +126,6 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
 
     //logout
     Route::post('/logout',[AuthController::class,'logout']);
-
-});
 
 Route::put('/portfolio/{id}',[PortfolioController::class,'update']);
 Route::delete('/portfolio/{id}',[PortfolioController::class,'destroy']);

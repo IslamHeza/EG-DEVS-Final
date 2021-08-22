@@ -88,7 +88,8 @@ class ProjectController extends Controller
      public function update(Request $request, $id)
     {
         $project = project::find($id);
-        return $project->update($request->all());
+        $project->update($request->all());
+        return $project ;
     }
 
     /**
