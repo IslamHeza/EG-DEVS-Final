@@ -76,9 +76,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-
         $url = 'https://spa.test/reset-password?token=' . $token;
-
         $this->notify(new ResetPasswordNotification($url));
     }
 
