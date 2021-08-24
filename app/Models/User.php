@@ -9,12 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Notifications\ResetPasswordNotification;
-// use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
 {
-    use HasApiTokens , HasFactory, Notifiable ;//  ,HasRoles;
+    use HasApiTokens , HasFactory, Notifiable ;
 
 
     /**

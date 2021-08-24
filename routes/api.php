@@ -64,7 +64,7 @@ Route::get('/project/{id}',[ProjectController::class,'show']);
 Route::get('/project/{id}',[ProjectController::class,'gettProject']);
 Route::post('/project',[projectController::class,'store']);
 Route::post('/project/{id}',[ProjectController::class,'store']);
-Route::put('/project/{id}',[ProjectController::class,'update']);
+
 
    //portofolios
 //    Route::get('/portfolio/',[PortfolioController::class,'index']);
@@ -74,49 +74,29 @@ Route::put('/project/{id}',[ProjectController::class,'update']);
    Route::get('/project/count/{id}/{status}',[ProjectController::class,'count']);
    Route::get('/project/active/{id}',[ProjectController::class,'active']);
    Route::get('/project/recent/{categry_id}',[ProjectController::class,'recent']);
-
+   Route::post('/portfolio/{id}',[PortfolioController::class,'store']);
 //purposals
    //purposals
    Route::get('/purposal',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
+/*******auth***********/
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
 //     //users
-//     Route::post('/users',[UserController::class,'store']);
-//     Route::put('/users/{id}',[UserController::class,'update']);
-//     Route::delete('/users/{id}',[UserController::class,'destroy']);
-//     Route::post('upload/{id}',[UploadController::class,'upload']);
-
-//     //projects
-
-
-//     Route::delete('/project/{id}',[ProjectController::class,'destroy']);
-
-//     //portofolios
-
-
-//    //purposals
-//    Route::post('/purposal',[PurposalController::class,'store']);
-//    Route::put('/purposal/{id}',[PurposalController::class,'update']);
-//    Route::post('/reviews',[ReviewController::class,'store']);
-
-
-//     //logout
-//     Route::post('/logout',[AuthController::class,'logout']);
-
-});
-    //users
     Route::post('/users',[UserController::class,'store']);
     Route::put('/users/{id}',[UserController::class,'update']);
     Route::delete('/users/{id}',[UserController::class,'destroy']);
 
+
     //projects
-
-
+    Route::put('/project/{id}',[ProjectController::class,'update']);
     Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 
-    //portofolios
+  //portofolios
+
+  Route::put('/portfolio/{id}',[PortfolioController::class,'update']);
+  Route::delete('/portfolio/{id}',[PortfolioController::class,'destroy']);
 
 
    //purposals
@@ -128,9 +108,8 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
     //logout
     Route::post('/logout',[AuthController::class,'logout']);
 
-Route::put('/portfolio/{id}',[PortfolioController::class,'update']);
-Route::delete('/portfolio/{id}',[PortfolioController::class,'destroy']);
-Route::post('/portfolio/{id}',[PortfolioController::class,'store']);
+});
+
 
 /*==============================================================================================================================================*/
 // Route::post('/register',[AuthController::class,'register']);
