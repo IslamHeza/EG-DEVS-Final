@@ -20,10 +20,11 @@ class PurposalController extends Controller
         return purposal::all();
     }*/
 
-    public function index()
+    public function index($id)
     {
         $purposals = Purposal::join('projects', 'purposals.project_id', '=', 'projects.id')
             ->join('users', 'users.id', '=', 'purposals.developer_id')
+            ->where('projects.id',$id)
             ->select('users.name', 'users.lname', 'users.image' ,'projects.title as title', 'purposals.*')
             ->get();
 
