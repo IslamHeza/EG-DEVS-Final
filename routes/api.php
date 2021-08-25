@@ -86,7 +86,6 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
    //tasks
    Route::get('/task',[TaskController::class,'index']);
    Route::get('/task/{id}',[TaskController::class,'getTask']);
-   Route::post('/task',[TaskController::class,'store']);
    Route::put('/task/{id}',[TaskController::class,'update']);
    Route::post('/task/{id}',[TaskController::class,'store']);
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
