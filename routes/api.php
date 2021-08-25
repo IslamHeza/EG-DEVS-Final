@@ -10,7 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ContactController;
-
+use App\Notifications\newNotification;
 
 use App\Models\Review;
 use App\Models\User;
@@ -218,7 +218,11 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 
 Route::post('/contact',[ContactController::class,'store']);
-
+Route::get('/event', function () {
+     
+   event(new NewNotification('Hey how are you beateful dodooo'));
+   
+});
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();

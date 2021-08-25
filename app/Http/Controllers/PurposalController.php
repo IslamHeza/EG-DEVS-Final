@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Purposal;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\DB;
-
+use App\Events\NewNotification;
 
 use Illuminate\Http\Request;
 
@@ -39,7 +39,29 @@ class PurposalController extends Controller
 
     public function store(Request $request)
     {
-        return Purposal::create($request->all());
+            
+        $purposal=new Purposal();
+        $purposal->cover_letter = $request-> cover_letter;
+        $purposal->budget = $request-> budget;
+        $purposal->time = $request-> time;
+        $purposal->owner_id = $request->owner_id;
+        $purposal->developer_id = $request->developer_id;
+        $purposal->project_id = $request-> project_id;
+        $purposal->save();
+       // return Purposal::create($request->all());
+        $data =[
+             
+           'cover_letter'=>$request-> cover_letter,
+           'budget'=>$request-> budget,
+           'time'=>$request-> time,
+           'owner_id'=>$request-> owner_id,
+           'developer_id'=>$request-> developer_id,
+           'project_id'=>$request-> project_id,        
+        ];
+
+        broadcast(new NewNotification($data));
+
+        return redirect() -> back()  
     }
 
  /**
