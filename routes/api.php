@@ -18,6 +18,8 @@ use App\Models\Purposal;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PurposalController;
+use App\Models\Task;
+use App\Http\Controllers\TaskController;
 // use App\Http\Controllers\Api\VerificationController;
 /*
 |--------------------------------------------------------------------------
@@ -64,7 +66,8 @@ Route::get('/project/{id}',[ProjectController::class,'show']);
 Route::get('/project/{id}',[ProjectController::class,'gettProject']);
 Route::post('/project',[projectController::class,'store']);
 Route::post('/project/{id}',[ProjectController::class,'store']);
-
+Route::put('/project/{id}',[ProjectController::class,'update']);
+Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 
    //portofolios
 //    Route::get('/portfolio/',[PortfolioController::class,'index']);
@@ -80,6 +83,13 @@ Route::post('/project/{id}',[ProjectController::class,'store']);
    Route::get('/purposal',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
+   //tasks
+   Route::get('/task',[TaskController::class,'index']);
+   Route::get('/task/{id}',[TaskController::class,'getTask']);
+   Route::post('/task',[TaskController::class,'store']);
+   Route::put('/task/{id}',[TaskController::class,'update']);
+   Route::post('/task/{id}',[TaskController::class,'store']);
+   Route::delete('/task/{id}',[TaskController::class,'destroy']);
 /*******auth***********/
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
@@ -90,8 +100,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
 
 
     //projects
-    Route::put('/project/{id}',[ProjectController::class,'update']);
-    Route::delete('/project/{id}',[ProjectController::class,'destroy']);
+
 
   //portofolios
 
