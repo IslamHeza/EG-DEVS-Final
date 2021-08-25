@@ -206,11 +206,11 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 
 Route::post('/contact',[ContactController::class,'store']);
-Route::get('/event', function () {
+/*Route::get('/event', function () {
      
    event(new NewNotification('Hey how are you beateful dodooo'));
    
-});
+});*/
 
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
