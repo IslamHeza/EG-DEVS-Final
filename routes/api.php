@@ -77,7 +77,7 @@ Route::put('/project/{id}',[ProjectController::class,'update']);
 
 //purposals
    //purposals
-   Route::get('/purposal',[PurposalController::class,'index']);
+   Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
@@ -110,6 +110,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
     Route::post('/users',[UserController::class,'store']);
     Route::put('/users/{id}',[UserController::class,'update']);
     Route::delete('/users/{id}',[UserController::class,'destroy']);
+    Route::get('/users/category/{id}',[UserController::class,'getCategory']);
 
     //projects
 
