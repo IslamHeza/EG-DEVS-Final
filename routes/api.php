@@ -89,6 +89,8 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
    Route::put('/task/{id}',[TaskController::class,'update']);
    Route::post('/task/{id}',[TaskController::class,'store']);
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
+   Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
+
 /*******auth***********/
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
