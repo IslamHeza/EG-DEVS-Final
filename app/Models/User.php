@@ -9,12 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 use App\Notifications\ResetPasswordNotification;
-// use Spatie\Permission\Traits\HasRoles;
+
 
 class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
 {
-    use HasApiTokens , HasFactory, Notifiable ;//  ,HasRoles;
+    use HasApiTokens , HasFactory, Notifiable ;
 
 
     /**
@@ -76,9 +76,7 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-
         $url = 'https://spa.test/reset-password?token=' . $token;
-
         $this->notify(new ResetPasswordNotification($url));
     }
 
