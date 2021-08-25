@@ -39,16 +39,19 @@ class TaskController extends Controller
 
     public function store(Request $request , $id)
     {
-        $file = $request->file('file');
+        $file = $request->file('task');
         $task = new Task();
 
-        if ($request->hasFile('file')) {
+        if ($request->hasFile('task')) {
             $fileName=$file->getClientOriginalName() ;
             $file->move(public_path('/storage/Tasks'), $fileName);
             $task->file = $fileName;
         }
-        $task->text = $request->text;
+        $task->text = $request->description;
         $task->developer_id = $id ;
+        $task->project_id = $request->project_id;
+        $task->owner_id = $request->owner_id;
+
         $task->save();
     }
     public function download($fileName){

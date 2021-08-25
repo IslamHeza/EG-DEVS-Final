@@ -80,13 +80,12 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
    Route::post('/portfolio/{id}',[PortfolioController::class,'store']);
 //purposals
    //purposals
-   Route::get('/purposal',[PurposalController::class,'index']);
+   Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
    //tasks
    Route::get('/task',[TaskController::class,'index']);
    Route::get('/task/{id}',[TaskController::class,'getTask']);
-   Route::post('/task',[TaskController::class,'store']);
    Route::put('/task/{id}',[TaskController::class,'update']);
    Route::post('/task/{id}',[TaskController::class,'store']);
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
@@ -97,6 +96,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
     Route::post('/users',[UserController::class,'store']);
     Route::put('/users/{id}',[UserController::class,'update']);
     Route::delete('/users/{id}',[UserController::class,'destroy']);
+    Route::get('/users/category/{id}',[UserController::class,'getCategory']);
 
 
     //projects
