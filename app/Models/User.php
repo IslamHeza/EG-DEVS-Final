@@ -10,10 +10,12 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Notifications\ResetPasswordNotification;
 
-class User extends Authenticatable implements MustVerifyEmail
+
+class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 
 {
-    use HasApiTokens , HasFactory, Notifiable;
+    use HasApiTokens , HasFactory, Notifiable ;
+
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'fname',
+        'name',
         'lname',
         'password',
         'username',
@@ -51,9 +53,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function skills(){
         return $this->belongsToMany(Skill::class);
     }
-    public function messages(){
-        return $this->hasMany(Message::class);
-    }
 
     protected $hidden = [
         'password',
@@ -77,9 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function sendPasswordResetNotification($token)
     {
-
         $url = 'https://spa.test/reset-password?token=' . $token;
-
         $this->notify(new ResetPasswordNotification($url));
     }
 

@@ -15,20 +15,21 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('fname');
-            $table->string('lname');
-            $table->string('password');
-            $table->string('username');
-            $table->enum('gender', ['male', 'female']);
-            $table->string('national_id');
-            $table->string('phone_number');
+            $table->string('name');
+            $table->string('lname')->nullable();
             $table->string('email')->unique();
-            $table->string('image')->nullable();
-            $table->string('city');
-            $table->string('street');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('username')->nullable();
+            $table->enum('gender', ['male', 'female']);
+            $table->string('national_id')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('image')->nullable()->default("user.png");
+            $table->string('city')->nullable();
+            $table->string('street')->nullable();
             $table->string('overview')->nullable()->default("Threre is No Overview");
-            $table->string('university');
-            $table->string('specialization');
+            $table->string('university')->nullable();
+            $table->string('specialization')->nullable();
             $table->string('experience')->nullable()->default("Threre is No Experience");
             $table->integer('rate')->default(0);
             $table->string('credit')->default(0);

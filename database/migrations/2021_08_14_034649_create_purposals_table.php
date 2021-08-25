@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailVerifiedAtToUsersTable extends Migration
+class CreatePurposalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            // $table->timestamp('email_verified_at')->nullable();
+        Schema::create('purposals', function (Blueprint $table) {
+            $table->id();
+            $table->string('cover_letter');
+            $table->integer("budget");
+            $table->DATE('time');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('purposal');
     }
 }

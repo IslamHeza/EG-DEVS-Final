@@ -14,7 +14,7 @@ class AddDeveloperIdToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->unsignedBigInteger('developer_id');
+            $table->unsignedBigInteger('developer_id')->nullable();
              $table->foreign('developer_id')->references('id')->on('users');
         });
     }

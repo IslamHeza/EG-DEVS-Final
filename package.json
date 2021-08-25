@@ -10,6 +10,7 @@
         "production": "mix --production"
     },
     "devDependencies": {
+<<<<<<< HEAD
         "@popperjs/core": "^2.9.3",
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
@@ -28,5 +29,11 @@
         "socket.io-client": "^4.1.3"
 =======
 >>>>>>> b2a76987d30db4748b698a0398df9edd64b4619c
+=======
+        "axios": "^0.21",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14"
+>>>>>>> cd9fdec2f7311c869e5e564dc4a742dd79277c65
     }
 }

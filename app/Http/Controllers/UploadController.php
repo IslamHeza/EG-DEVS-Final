@@ -8,13 +8,18 @@ use Illuminate\Http\Request;
 class UploadController extends Controller
 {
     function upload(Request $request, $id){
+        $image = $request->file('image');
         $user = User::find($id);
         if($user != null){
 //            dd($request->all());
             if($request->hasfile('image')){
-                $image =  $request->file('image')->store('uploads','public');
-                $user->update(['image'=>$image]);
-                return response()->json(url('storage/'.$image));
+                $imgName = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('/storage/users'), $imgName);
+                $user->image = $imgName;
+                $user->save();
+                // $image =  $request->file('image')->store('uploads','public');
+                // return $user->update(['image'=>$image]);
+                // return response()->json(url('storage/'.$imgName));
             }else{
                 return response()->json('image null');
             }

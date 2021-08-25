@@ -15,14 +15,15 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string("name");
+            $table->string("title");
             $table->string("description");
-            $table->integer("rate")->default(0)->change();
+            $table->integer("rate")->default(0);
             $table->integer("budget");
-            $table->integer("final_price")->nullable()->change();
-            // $table->string("description");
+            // $table->integer("final_price");
             $table->string("location");
-            $table->enum('status', ['done', 'proccessing'])->nullable()->change();
+            $table->string("file");
+            // $table->string('status')->nullable()->default("");
+            $table->enum('status', ['done', 'proccessing','pending'])->default('pending');
             $table->timestamps();
         });
     }

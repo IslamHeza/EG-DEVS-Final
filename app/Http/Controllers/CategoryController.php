@@ -9,25 +9,14 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories=Category::all();
+        $catagories=Category::all();
 
-        return  $categories;
+        return  $catagories;
     }
 
-   /* public function show()
+    public function show()
     {
         $catagory = User::all();
         return  $catagory ;
-    }*/
-
-    public function show($name){
-        $users = User::join('categories', 'users.category_id', '=', 'categories.id')
-        ->select('users.*', 'categories.name')
-        ->where('users.type','developer')
-        ->where('categories.name' ,$name)
-        ->get();
-
-        return $users  ;
     }
-
 }

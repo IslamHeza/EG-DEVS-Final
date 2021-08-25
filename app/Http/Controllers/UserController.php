@@ -80,6 +80,8 @@ class UserController extends Controller
         return $users  ;
     }
 
+
+
     public function getCategory($user_id){
         return User::select('category_id')->where('id',$user_id)->get();
     }

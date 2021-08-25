@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function register(Request $request){
         $fields = $request->validate ([
-            'fname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'lname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'unique:users'],
              'password' => ['string','min:8'],
@@ -38,7 +38,7 @@ class AuthController extends Controller
         ]);
 
         $user = new User();
-        $user->fname = $fields['fname'];
+        $user->name = $fields['name'];
         $user->lname = $fields['lname'];
         $user->email = $fields['email'];
         $user->password = Hash::make($fields['password']);
@@ -75,6 +75,8 @@ class AuthController extends Controller
 
         return  response( $response ,201);
 
+
+
    }
 
 
@@ -104,13 +106,19 @@ class AuthController extends Controller
 
     }
 
+    // public function logout(Request $request){
+
+    //     auth()->user()->tokens()->delete();
+    //     return response(
+    //         ['message'=>"Logged Out"]
+    //     ,201);
+    // }
+
     public function logout(Request $request){
         auth()->user()->tokens()->delete();
-        return response(
-            ['message'=>"Logged Out"]
-        ,201);
+        return [
+            'message' => 'logged out'
+        ];
     }
-
-
 
 }

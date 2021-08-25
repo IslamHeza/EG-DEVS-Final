@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmailVerifiedAtToUsersTable extends Migration
+class AddProjectIdToPurposalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            // $table->timestamp('email_verified_at')->nullable();
+        Schema::table('purposals', function (Blueprint $table) {
+            $table->unsignedBigInteger('project_id')->nullable();
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 
@@ -25,7 +26,7 @@ class AddEmailVerifiedAtToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('purposals', function (Blueprint $table) {
             //
         });
     }

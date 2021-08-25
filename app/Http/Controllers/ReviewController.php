@@ -38,7 +38,7 @@ class ReviewController extends Controller
     {
         $reviews = Review::Join('users' , 'users.id' , '=' , 'reviews.rater_id')
         ->join('projects' , 'projects.id' , '=' , 'reviews.project_id')
-        ->select('reviews.*' , 'projects.name' , 'users.fname' , 'users.lname' , 'users.image')
+        ->select('reviews.*' , 'projects.title', 'users.name' , 'users.lname' , 'users.image')
         ->where('reviews.ratee_id' , $id)
         ->get();
         return $reviews;
@@ -68,13 +68,11 @@ class ReviewController extends Controller
     }
     public function HomeReviews(){
         $reviews = Review::join('users' , 'users.id' , '=' , 'reviews.rater_id')
-        ->distinct('reviews.*' , 'users.fname' , 'users.lname' , 'users.image')
+        ->distinct('reviews.*' , 'users.name' , 'users.lname' , 'users.image')
         ->where('reviews.rate' , '>=' , '3')
         ->get()
         ->random(3);
 
         return $reviews;
     }
-   
-
 }
