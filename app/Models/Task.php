@@ -13,8 +13,9 @@ class Task extends Model
         'text',
         'owner_id',
         'developer_id',
-        'project_id'
-
+        'project_id',
+        'submitted',
+        'accepted'
     ];
     protected $casts = [
 
