@@ -23,7 +23,7 @@ class CreateProjectsTable extends Migration
             $table->string("location");
             $table->string("file");
             // $table->string('status')->nullable()->default("");
-            $table->enum('status', ['done', 'proccessing','pending'])->default('pending');
+            $table->enum('status', ['done', 'processing','pending'])->default('pending');
             $table->timestamps();
         });
     }
