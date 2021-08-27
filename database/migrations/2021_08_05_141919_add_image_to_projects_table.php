@@ -14,7 +14,7 @@ class AddImageToProjectsTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table->string('image')-nullable();
+            $table->string('image');
         });
     }
 
