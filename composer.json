@@ -14,7 +14,7 @@
         "laravel/framework": "^8.54",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "pusher/pusher-php-server": "^5.0.3",
+        "pusher/pusher-php-server": "^7.0",
         "tcg/voyager": "^1.4"
     },
     "require-dev": {

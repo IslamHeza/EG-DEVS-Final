@@ -3,21 +3,29 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\UploadController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ChatController;
+
+
 
 
 use App\Models\Review;
 use App\Models\User;
-use App\Models\Purposal;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\NewPasswordController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\MessageController;
+
+use \App\Http\Controllers\UploadController;
+
+
+
+
+use App\Models\Purposal;
 use App\Http\Controllers\PurposalController;
 use App\Models\Task;
 use App\Http\Controllers\TaskController;
@@ -70,6 +78,14 @@ Route::post('/project/{id}',[ProjectController::class,'store']);
 Route::put('/project/{id}',[ProjectController::class,'update']);
 Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 
+   //chat
+//    Route::get('/messages',[MessageController::class,'index']);
+//     Route::get('/messages/{id1}/{id2}',[MessageController::class,'getmessage']);
+//     Route::post('/messages',[MessageController::class,'store']);
+Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
+Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
+
+
    //portofolios
 //    Route::get('/portfolio/',[PortfolioController::class,'index']);
    Route::get('/portfolio/all/{id}',[PortfolioController::class,'all']);
@@ -90,6 +106,8 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
    Route::put('/task/{id}',[TaskController::class,'update']);
    Route::post('/task/{id}',[TaskController::class,'store']);
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
+   Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
+
 /*******auth***********/
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
@@ -117,6 +135,9 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
    //chat
    Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
    Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
+
+// Route::post('/pusher/auth',[ChatController::class,'authorizeUser']);
+
 
     //logout
     Route::post('/logout',[AuthController::class,'logout']);

@@ -23,9 +23,12 @@ class ReviewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
-        return (Review::create($request->all()));
+        
+      return (Review::create($request->all()));
+      
+        
     }
 
     /**
@@ -38,9 +41,11 @@ class ReviewController extends Controller
     {
         $reviews = Review::Join('users' , 'users.id' , '=' , 'reviews.rater_id')
         ->join('projects' , 'projects.id' , '=' , 'reviews.project_id')
-        ->select('reviews.*' , 'projects.title', 'users.name' , 'users.lname' , 'users.image')
+        ->select('reviews.*', 'users.name' , 'users.lname' , 'users.image'  , 'projects.title')
         ->where('reviews.ratee_id' , $id)
         ->get();
+        // $reviews = Review::where('ratee_id' , $id)
+        // ->get();
         return $reviews;
     }
 

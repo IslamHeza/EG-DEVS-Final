@@ -21,14 +21,14 @@ class ChatController extends Controller
         // $newMessage->message = $request->message;
         // $newMessage->reciever_id = $reciever_id;
         // $newMessage->save();
+
         event(new Messages($request->input('message') , $request->input('sender_id'), $request->input('reciever_id') , $request->input('username')));
 
         // broadcast(new Messages($request->input('reciever_id') , $request->input('message'), $request->input('sender_id')))->toOthers();
 
         // $this->pusher->trigger('private-chat' . $reciever_id, 'message', $newMessage);
-        
         $newMessage =  Message::create($request->all());
-        
+
         return $newMessage;
     }
 
@@ -40,7 +40,7 @@ class ChatController extends Controller
                 ->where('reciever_id', $id2);
         })->orWhere(function($query) use ($id1 , $id2) {
             $query->where('sender_id', $id2)
-            ->where('reciever_id', $id1);	
+            ->where('reciever_id', $id1);
         });
 
         $message = $message->join('users as sender' , 'messages.sender_id' , '=' , 'sender.id')
@@ -52,7 +52,7 @@ class ChatController extends Controller
     }
 
     // public function authorizeUser(Request $request) {
- 
+
     //     $fields = $request->validate ([
     //         'email' => ['required', 'string', 'email'],
     //         'password' => ['required', 'string', 'min:8'],
@@ -65,17 +65,17 @@ class ChatController extends Controller
     //         ],401);
 
     //     }
-     
+
     //     echo pusher->socket_auth(
-     
-    //         $request->input('channel_name'), 
-     
+
+    //         $request->input('channel_name'),
+
     //         $request->input('socket_id')
-     
+
     //     );
 
-     
+
     // }
 
-   
+
 }
