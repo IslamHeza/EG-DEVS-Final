@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ChatController;
 
 
 use App\Models\Review;
@@ -113,6 +114,9 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
    Route::put('/purposal/{id}',[PurposalController::class,'update']);
    Route::post('/reviews',[ReviewController::class,'store']);
 
+   //chat
+   Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
+   Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
 
     //logout
     Route::post('/logout',[AuthController::class,'logout']);
