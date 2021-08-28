@@ -22,10 +22,10 @@ class PortfolioController extends Controller
         return portfolio::all();
 
     }
-    // 
+    //
     public function all($id)
     {
-        $result = portfolio::where('user_id',$id)->get();  
+        $result = portfolio::where('user_id',$id)->get();
         return $result ;
     }
 

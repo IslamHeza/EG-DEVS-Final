@@ -67,7 +67,7 @@ class TaskController extends Controller
         // $task = Task::where($project_id) ;
         $task = Task::where('project_id', $id)->update(['accepted' => 1]);
         return $task ;
-         
+
 
         // $task->accepted = 1;
         // $task->save();

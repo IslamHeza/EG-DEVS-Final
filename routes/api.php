@@ -10,6 +10,9 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
 
+
+
+
 use App\Models\Review;
 use App\Models\User;
 use App\Http\Controllers\EmailVerificationController;
@@ -82,6 +85,11 @@ Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
 Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
 
+//tasks
+Route::post('/task/{id}',[TaskController::class,'store']);
+Route::get('/task',[TaskController::class,'index']);
+Route::get('/task/{id}',[TaskController::class,'getTask']);
+Route::put('/task/{id}',[TaskController::class,'update']);
 
    //portofolios
 //    Route::get('/portfolio/',[PortfolioController::class,'index']);
@@ -107,6 +115,11 @@ Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
    Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
 
+   //contact
+   Route::post('/contact',[ContactController::class,'store']);
+
+
+
 /*******auth***********/
 Route::group(['middleware' => ['auth:sanctum'] ], function() {
     /*routes need to access */
@@ -120,6 +133,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
     //projects
 
 
+
   //portofolios
 
   Route::put('/portfolio/{id}',[PortfolioController::class,'update']);
@@ -130,10 +144,20 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
    Route::post('/purposal',[PurposalController::class,'store']);
    Route::put('/purposal/{id}',[PurposalController::class,'update']);
    Route::post('/reviews',[ReviewController::class,'store']);
+   Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
+   Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
+   //chat
+   Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
+   Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
 
 // Route::post('/pusher/auth',[ChatController::class,'authorizeUser']);
+   //tasks
 
+
+
+   Route::delete('/task/{id}',[TaskController::class,'destroy']);
+   Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
 
     //logout
     Route::post('/logout',[AuthController::class,'logout']);
@@ -142,13 +166,9 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
 
 
 /*==============================================================================================================================================*/
-// Route::post('/register',[AuthController::class,'register']);
-// Route::post('/login',[AuthController::class,'login']);
+
 
 //email vertification
-// Route::middleware('auth:sanctum','verified')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 Route::post('email/verification-notification', [EmailVerificationController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
 Route::get('verify-email/{id}/{hash}', [EmailVerificationController::class, 'verify'])->name('verification.verify');
@@ -162,73 +182,14 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 // Route::get('/email/resend', [VerificationController::class,'resend'])->name('verification.resend')->middleware('auth:sanctum');
 // Route::get('/email/verify/{id}/{hash}',[VerificationController::class,'verify'])->name('verification.verify')->middleware('auth:sanctum');
 
-// Route::get('/email/resend', 'Api\VerificationController@resend')->name('verification.resend');
-// Route::get('/email/verify/{id}/{hash}', 'Api\VerificationController@verify')->name('verification.verify');
-
-
 //purposal
-// Route::get('/purposal',[PurposalController::class,'index']);
-// Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
-// Route::post('/purposal',[PurposalController::class,'store']);
 // Route::put('/purposal/{id}',[PurposalController::class,'update']);
 // Route::delete('/purposal/{id}',[PurposalController::class,'destroy']);
 
 //========================================================================//
 
 
-//mohamed Start users routes
-// Route::get('/users',[UserController::class,'index']);
-// Route::get('/users/{id}',[UserController::class,'show']);
-// Route::post('/users',[UserController::class,'store']);
-// Route::put('/users/{id}',[UserController::class,'update']);
-// Route::delete('/users/{id}',[UserController::class,'destroy']);
-// Route::post('upload/{id}',[UploadController::class,'upload']);
-//mohamed End users routes
 
 
-// Route::get('/developers',[UserController::class,'getDevelopers']);
-// Route::get('/mostProjects',[ProjectController::class,'getMostProjects']);
-// Route::get('/reviews',[ReviewController::class,'index']);
-// Route::get('/HomeReviews',[ReviewController::class,'HomeReviews']);
-// Route::post('/reviews',[ReviewController::class,'store']);
-// Route::get('/review/{id}',[ReviewController::class,'show']);
 
 
-//***********************( islam )***********************//
-// Route::get('/portfolio',[PortfolioController::class,'index']);
-// Route::get('/portfolio/{id}',[PortfolioController::class,'show']);
-// Route::post('/portfolio/{id}',[PortfolioController::class,'store']);
-// Route::put('/portfolio/{id}',[PortfolioController::class,'update']);
-// Route::delete('/portfolio/{id}',[PortfolioController::class,'destroy']);
-// Route::get('/portfolio/count/{id}',[PortfolioController::class,'count']);
-// Route::get('/project/count/{id}/{status}',[ProjectController::class,'count']);
-// Route::get('/project/active/{id}',[ProjectController::class,'active']);
-// Route::get('/project/recent/{categry_id}',[ProjectController::class,'recent']);
-// Route::post('/portfolio/upload/{id}',[PortfolioController::class,'upload']);
-// Route::apiResource('portfolio',App\Http\Controllers\PortfolioController::class);
-
-
-// //catagories
-
-// Route::get('/categories',[CategoryController::class,'index']);
-// Route::get('/categories/{categoryname}',[CategoryController::class,'show']);
-
-// //project
-// Route::get('/project',[ProjectController::class,'index']);
-// Route::get('/project/{id}',[ProjectController::class,'show']);
-// Route::get('/project/{id}',[ProjectController::class,'gettProject']);
-//  Route::post('/project',[ProjectController::class,'store']);
-//  Route::post('/project/{id}',[ProjectController::class,'store']);
-// Route::put('/project/{id}',[ProjectController::class,'update']);
-// Route::delete('/project/{id}',[ProjectController::class,'destroy']);
-
-
-// Route::get('/download/{fileName}',[ProjectController::class,'download']);
-
-
-Route::post('/contact',[ContactController::class,'store']);
-
-
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
