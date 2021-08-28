@@ -21,7 +21,7 @@ class ProjectController extends Controller
         $project = Project::join('categories', 'projects.category_id', '=', 'categories.id')
             ->join('users', 'users.id', '=', 'projects.owner_id')
             ->select('users.name', 'users.lname','users.image as avatar','users.rate as user_rate','categories.name as cat_name', 'projects.*')
-            ->get();
+            ->orderBy('updated_at', 'DESC')->get();
 
         return $project;
     }

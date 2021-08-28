@@ -89,4 +89,9 @@ class PurposalController extends Controller
     {
         return Purposal::destroy($id);
     }
+
+    public function getProposalOfProject($project_Id , $userId){
+        $propsal = Purposal::where('purposals.project_id',$project_Id)->where('developer_id',$userId)->get();
+        return $propsal ;
+    }
 }

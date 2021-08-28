@@ -96,7 +96,9 @@ Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
    //purposals
    Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
+   Route::get('/purposal/project/{project_id}/{userId}',[PurposalController::class,'getProposalOfProject']);
 
+   
    //tasks
    Route::get('/task',[TaskController::class,'index']);
    Route::get('/task/{id}',[TaskController::class,'getTask']);
