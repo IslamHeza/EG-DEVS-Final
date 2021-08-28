@@ -9,7 +9,7 @@ import { User } from 'src/app/_models/user';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  likes: any =  10;
   constructor(private userservice: UserService, private router: Router, private authService:AuthService) {
 
   }

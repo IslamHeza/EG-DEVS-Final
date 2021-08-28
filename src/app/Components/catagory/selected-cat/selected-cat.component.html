@@ -40,9 +40,9 @@
         <input type="text" [(ngModel)]="searchCity" class="form-control" placeholder="Search By City" />
     </div>
 
-    <div class="form-group col-sm-8 col-lg-3 border border-1 rounded">
+    <div class="form-group col-sm-8 col-lg-3  ">
 
-        <p-rating [(ngModel)]="searchRate" [readonly]="false" [stars]="5" [cancel]="false"> </p-rating>
+        <input type="text" [(ngModel)]="searchRate" class="form-control" placeholder="Search By rate from 1 to 5" />
 
 
     </div>
@@ -53,11 +53,11 @@
     <!--row1-->
     <div class="container">
         <div class="row justify-content-center ">
-            <div div *ngFor="let item of Developers | city:searchCity  | name:searchName " class="card cd  col-md-4  col-lg-3 " style="width:16rem; height:18rem;">
+            <div div *ngFor="let item of Developers | city:searchCity  | name:searchName | review:searchRate " class="card cd  col-md-4  col-lg-3 " style="width:16rem; height:18rem;">
                 <img src="http://localhost:8000/storage/{{item.image}}" class="card-img-top " alt="...">
                 <div class="card-body">
                     <div class="content ">
-                        <p><a href="doctor-single.html">{{item.name}} {{item.name}} </a></p>
+                        <p><a href="doctor-single.html">{{item.name}} {{item.lname}} </a></p>
                         <p>{{item.city}}</p>
                         <p-rating [(ngModel)]="item.rate" [readonly]="true" [stars]="5" [cancel]="false"> </p-rating>
                     </div>

@@ -15,7 +15,7 @@ export class SelectedCatComponent implements OnInit {
    catagories:Catagory[]=[];
    searchCity:String="";
    searchName:String="";
-   searchRate:number=0 ;
+   searchRate:any;
 
    catagory:any=[];
    categoryName:any;

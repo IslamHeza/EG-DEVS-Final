@@ -108,7 +108,8 @@ import { EditComponent } from './Components/jobs/crud/edit/edit.component';
 import { ViewComponent } from './Components/jobs/crud/view/view.component';
 import { AddReviewComponent } from './Components/jobs/add-review/add-review.component';
 import { userTypeGuard } from './userType.guard';
-
+import { ReviewPipe } from './Components/catagory/selected-cat/review.pipe';
+ 
 
 
 @NgModule({
@@ -169,6 +170,8 @@ import { userTypeGuard } from './userType.guard';
     EditComponent,
     ViewComponent,
     AddReviewComponent,
+    ReviewPipe,
+    
 
   ],
   imports: [
