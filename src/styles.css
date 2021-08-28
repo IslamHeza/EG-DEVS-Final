@@ -21,6 +21,10 @@
 @import url("//cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
 @import url("assets/css/login/util.css");
 @import url("assets/css/login/main.css");
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css');
+@import url('//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script');
+@import url('//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script');
 body {
     /* background-color: #f9f9fa; */
     color: #6c7293;

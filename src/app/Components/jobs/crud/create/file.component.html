@@ -24,7 +24,8 @@
             <div class="form-group row my-3">
                 <label class="col-sm-3 col-form-label">Budget</label>
                 <div class="col-sm-9">
-                    <input class="form-control input-md m-1" type="text" formControlName="budget">
+                    <p-inputNumber [(ngModel)]="Project.budget" name="budget" formControlName="budget" [showButtons]="true" mode="currency" currency="USD"></p-inputNumber>
+
                 </div>
             </div>
             <div class="form-group row my-3">

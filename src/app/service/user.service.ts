@@ -87,7 +87,7 @@ export class UserService {
   }
 
   getUserCategory(id:any){
-    return this.httpClient.get(this. userUrl +'category/'+id);
+    return this.httpClient.get(this. userUrl +'category/'+id , {headers:this.headers});
   }
 
 

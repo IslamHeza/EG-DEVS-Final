@@ -31,7 +31,12 @@ export class ViewAcceptedPurposalComponent implements OnInit {
   rate: number = 0;
   rate_pro: number = 0;
   data: any;
-  user: any = [];
+  user : any = [];
+  status: any;
+  reciever_id :any;
+  onlineUser: User = new User();
+  userData :any;
+
   userType: any = false ;
   task: any = [];
   url: any;
@@ -43,11 +48,19 @@ export class ViewAcceptedPurposalComponent implements OnInit {
   }
 
   get_purposal() {
+
     this.purposalservice
       .getPurposal(this.route.snapshot.params.id)
       .subscribe((response) => {
         this.purposal = response;
 
+        this.onlineUser.id = localStorage.getItem('id');
+        if(this.onlineUser.id == this.purposal.owner_id){
+          this.reciever_id = this.purposal.developer_id
+        } else{
+          this.reciever_id = this.purposal.owner_id;
+        }
+        
         this.userservice
           .getUser(this.purposal.developer_id)
           .subscribe((res) => {

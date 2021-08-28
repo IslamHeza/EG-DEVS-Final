@@ -35,7 +35,9 @@ export class SubmitPurposalComponent implements OnInit {
     this.view();
     this.onlineUser.id = localStorage.getItem('id');
     this.getUser(this.onlineUser.id);
+
     this.addingpurposal();
+
   }
   getUser(id: any) {
     return this.userservice.getUser(id).subscribe((res) => {
@@ -63,21 +65,7 @@ export class SubmitPurposalComponent implements OnInit {
     this.purposal.owner_id = this.project.owner_id
     this.purposal.developer_id = this.onlineUser.id
     return this.PurposalService.addPurposal(this.purposal).subscribe( res => {
-      this.ProjectService.getProject(this.route.snapshot.params.id).subscribe(res => {
-        this.project = res;
-        this.rate = this.project.rate;
 
-        // if(this.project.status==''){
-        // this.project.status='pending';
-        // console.log(this.project.status);
-
-        // this.ProjectService.updateProject(
-        //   this.route.snapshot.params.id,
-        //   this.project
-        // ).subscribe((res) => {});
-        // }
-
-      });
 
       //  console.log(this.purposal.project_id);
       this.router.navigate(['viewproject/' + this.project.id]);
@@ -85,6 +73,23 @@ export class SubmitPurposalComponent implements OnInit {
     })
   }
 
+// getproject(){
+//   this.ProjectService.getProject(this.route.snapshot.params.id).subscribe(res => {
+//     this.project = res;
+//     this.rate = this.project.rate;
 
+//     // if(this.project.status==''){
+//     // this.project.status='pending';
+//     // console.log(this.project.status);
+
+//     // this.ProjectService.updateProject(
+//     //   this.route.snapshot.params.id,
+//     //   this.project
+//     // ).subscribe((res) => {});
+//     // }
+
+//   });
+
+// }
 
 }

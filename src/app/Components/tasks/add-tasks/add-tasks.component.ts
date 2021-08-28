@@ -84,17 +84,26 @@ export class AddTasksComponent implements OnInit {
   onSubmit() {
 
     const formData: any = new FormData();
+    this.submitted = true;
 
-    formData.append('description', this.form.get('description')?.value);
-    formData.append('task', this.form.get('task')?.value);
-    formData.append('project_id', this.purposal.project_id);
-    formData.append('developer_id', this.onlineUser.id);
-    formData.append('owner_id', this.purposal.owner_id);
-    formData.append('submitted', 1);
-    
-    this.taskService
-      .addTask(formData, this.onlineUser.id)
-      .subscribe((response) => {});
+    if (this.form.valid) {
+      formData.append('description', this.form.get('description')?.value);
+      formData.append('task', this.form.get('task')?.value);
+      formData.append('project_id', this.purposal.project_id);
+      formData.append('developer_id', this.onlineUser.id);
+      formData.append('owner_id', this.purposal.owner_id);
+      formData.append('submitted', 1);
+      
+      this.taskService
+        .addTask(formData, this.onlineUser.id)
+        .subscribe((response) => {});
+        console.table(this.form.value);
+        this.router.navigate(['/dashboard']);
+      }else {
+      console.log('enter valid data');
+
+    }
+
   }
   
   getUser(id: any) {

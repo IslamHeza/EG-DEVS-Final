@@ -19,6 +19,7 @@ export class RightComponent implements OnInit {
   data:any;
   Reviews:any = [];
   checkUser:any;
+  onlineUser: User = new User();
   constructor(private userService:UserService , private reviewService:ReviewsService,private route:ActivatedRoute) { }
   ngOnInit(): void {
     this.userService.getUser(this.route.snapshot.params.id).subscribe(res =>{
@@ -31,12 +32,13 @@ export class RightComponent implements OnInit {
         this.checkUser=false;
       }
     });
+    this.onlineUser.id = localStorage.getItem('id');
     this.showReview();
 
 
     }
     showReview(){
-      this.reviewService.showreviews(4).subscribe(res => {
+      this.reviewService.showreviews(this.onlineUser.id).subscribe(res => {
         this.Reviews = res;
         console.log(res)
       });

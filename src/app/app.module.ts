@@ -88,6 +88,7 @@ import { ViewTasksComponent } from './Components/tasks/view-tasks/view-tasks.com
 
 
 
+
 import {RouterModule} from '@angular/router';
 
 // import { SpeedDialModule } from '/primeng/speeddial';
@@ -107,6 +108,8 @@ import { ProjectPipe } from './Components/jobs/crud/list/project.pipe';
 import { EditComponent } from './Components/jobs/crud/edit/edit.component';
 import { ViewComponent } from './Components/jobs/crud/view/view.component';
 import { AddReviewComponent } from './Components/jobs/add-review/add-review.component';
+import { MessagesComponent } from './Components/chat/messages/messages.component';
+import { MessageComponent } from './Components/messages/message/message.component';
 import { userTypeGuard } from './userType.guard';
 import { ReviewPipe } from './Components/catagory/selected-cat/review.pipe';
  
@@ -170,8 +173,10 @@ import { ReviewPipe } from './Components/catagory/selected-cat/review.pipe';
     EditComponent,
     ViewComponent,
     AddReviewComponent,
+    MessagesComponent,
+    MessageComponent,
     ReviewPipe,
-    
+
 
   ],
   imports: [

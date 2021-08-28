@@ -1,5 +1,5 @@
 export class Catagory {
-    constructor  (public id:any, public name:any , public img:any){}
+    constructor  (public id:any  , public name:any = null , public img:any = null){}
 }
 
 

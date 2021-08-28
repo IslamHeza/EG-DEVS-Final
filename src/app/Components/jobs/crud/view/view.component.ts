@@ -10,7 +10,7 @@ import { PurposalService } from 'src/app/service/purposal.service';
 import { Purposal } from 'src/app/_models/purposal';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import {MenuItem} from 'primeng/api';
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -45,6 +45,8 @@ export class ViewComponent implements OnInit {
   hide: boolean = false;
 
   rate_pro: number = 0;
+  items: MenuItem[] = [];
+
 
   ngOnInit(): void {
     this.onlineUser.id = localStorage.getItem('id');
@@ -52,8 +54,10 @@ export class ViewComponent implements OnInit {
 
     this.view();
     this.showreview();
+
     // this.hide=!(this.purposal.developer_id== this.onlineUser && this.onlineUser.type=='developer')
     // this.check_purposal();
+
   }
   // check_purposal(){
   //   if(this.onlineUser.id==this.purposal.developer_id && this.onlineUser.type =='developer'
@@ -84,9 +88,18 @@ export class ViewComponent implements OnInit {
         this.download();
         this.get_allpurposal();
 
+
         // localStorage.setItem('project_id',JSON.stringify((this.project.id)));
-      }
-    );
+      });
+    this.items = [
+      {label: 'Edit', icon: 'pi pi-refresh', routerLink: [`/editproject/${this.route.snapshot.params.id}`]},
+      {separator:true},
+      {label: 'Delete', icon: 'pi pi-times', command: () => {
+         return this.ProjectService.deleteProject(this.project.id).subscribe(res => {
+            this.router.navigate(['listproject']);
+          });
+      }},
+    ];
   }
 
   showreview() {
@@ -120,11 +133,15 @@ export class ViewComponent implements OnInit {
             this.canSubmit = false;
 
             console.log(this.canSubmit);
+            this.userservice.getUser(this.purposal.developer_id).subscribe(res => {
+                  this.user_of_purposal=res;
 
+                  console.log(res);
+                });
             // this.canSubmit = false ;
             break;
           }
-        
+
       }
     });
     // this.allpurposals.forEach( function (element){
@@ -217,4 +234,20 @@ export class ViewComponent implements OnInit {
       }
     );
   }
+  updateProject(){
+  }
+
+  // deleteProject(event:any , id:any){
+  //   event.preventDefault()
+  //   return this.ProjectService.deleteProject(id).subscribe(res => {
+  //     this.view();
+  //   });
+  // }
+  activeEdit(){
+    if(this.onlineUser.type == 'client' && this.project.status == 'pending' && this.onlineUser.id ==this.project.owner_id ){
+      return true ;
+    } else {
+      return false ;
+    }
+}
 }

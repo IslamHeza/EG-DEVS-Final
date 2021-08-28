@@ -26,7 +26,7 @@ export class PortfolioService {
   }
 
   addPortfolio(portfolio:any , id:any){
-    return this.httpClient.post(this.baseURL+id , portfolio );
+    return this.httpClient.post(this.baseURL+id , portfolio ,{headers:this.headers});
 }
 
   updatePortfolio(id:any,Portfolio:any){

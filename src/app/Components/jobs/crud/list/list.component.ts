@@ -14,7 +14,8 @@ export class ListComponent implements OnInit {
   val:number=3
   searchjob:String="";
 
-
+  userData: any;
+  onlineUser: User = new User();
   allprojects:any=[];
 
   constructor(   private route: ActivatedRoute,
@@ -23,6 +24,9 @@ export class ListComponent implements OnInit {
     private userservice: UserService ){}
 
   ngOnInit(): void {
+    this.onlineUser.id = localStorage.getItem('id');
+    this.getUser(this.onlineUser.id);
+
      this.getAllProjects();
 
   }
@@ -35,16 +39,14 @@ export class ListComponent implements OnInit {
      
     });
   }
-
-  updateProject(){
-  }
-
-  deleteProject(event:any , id:any){
-    event.preventDefault()
-    return this.ProjectService.deleteProject(id).subscribe(res => {
-      this.getAllProjects();
+  getUser(id: any) {
+    return this.userservice.getUser(id).subscribe((res) => {
+      this.userData = res;
+      this.onlineUser = this.userData;
+      console.log(this.onlineUser.type);
     });
   }
+  
 
 
 

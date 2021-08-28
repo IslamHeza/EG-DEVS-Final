@@ -16,10 +16,10 @@ export class PurposalService {
   })
 
   getAllPurposals(projectId:any){
-    return this.httpClient.get(this.baseUrl+'all/'+projectId );
+    return this.httpClient.get(this.baseUrl+'all/'+projectId ,{headers:this.headers} );
   }
   getPurposal(id:any){
-    return this.httpClient.get(this.baseUrl + id)
+    return this.httpClient.get(this.baseUrl + id , {headers:this.headers})
   }
 
   addPurposal(purposal:any){
@@ -29,5 +29,7 @@ export class PurposalService {
   updatePurposal(id:any,purposal:any){
     return this.httpClient.put(`${this.baseUrl}${id}`, purposal ,{headers:this.headers});
   }
-
+  getProposalOfProject(projectID:any , userId : any){
+    return this.httpClient.get(this.baseUrl +'project/'+ projectID+'/'+ userId);
+  }
 }

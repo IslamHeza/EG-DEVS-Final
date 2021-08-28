@@ -34,16 +34,16 @@ export class ProjectService {
   }
 
   addPortproject(project:any , id :any){
-    return this.httpClient.post(this.baseUrl+id , project ) ;
+    return this.httpClient.post(this.baseUrl+id , project ,{headers:this.headers}) ;
   }
 
   updateProject(id:any,project:any){
-    return this.httpClient.put(`${this.baseUrl}${id}`, project );
+    return this.httpClient.put(`${this.baseUrl}${id}`, project ,{headers:this.headers} );
   }
 
 
   deleteProject(id:any){
-    return this.httpClient.delete(this. baseUrl + id);
+    return this.httpClient.delete(this. baseUrl + id ,{headers:this.headers});
   }
 
   countProjects(id :any , status:any){

@@ -41,14 +41,11 @@ export class ProfileComponent implements OnInit {
   // }
   // getAllUsers(){
   //   return this.userService.getAllUsers().subscribe(res => {
-  //     // console.log(res);
-  //     this.allUsers = res;
   //   })
   }
   // deleteUser(e:any,id:any){
   //   e.preventDefault();
   //   return this.userService.deleteUser(id).subscribe(res => {
   //     this.getAllUsers();
-  //   })
   // }
 }
