@@ -13,11 +13,14 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('_notifications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('type');
-            $table->morphs('notifiable');
-            $table->text('data');
+        Schema::create('notifications', function (Blueprint $table) {
+
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->on('users')->references('id');
+            $table->unsignedBigInteger('purposal_id');
+            $table->foreign('purposal_id')->on('purposals')->references('id');
+            $table->string('message',500);
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_notifications');
+        Schema::dropIfExists('notifications');
     }
 }

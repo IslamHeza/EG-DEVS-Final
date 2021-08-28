@@ -5,8 +5,9 @@ use App\Models\Purposal;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\DB;
 use App\Events\NewNotification;
-
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PurposalController extends Controller
 {
@@ -36,12 +37,28 @@ class PurposalController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     */
+     */ 
+    
 
     public function store(Request $request)
-    {
-            
-        $purposal=new Purposal();
+    { 
+        // insert a purposal into database 
+       $proposal = Purposal::create($request->all());
+    }
+        // insert notification in database
+     /*   Notification::create([
+            'user_id' => $proposal->owner_id,
+            'purposal_id' => $proposal->id,
+            'message' => Auth::user()->username . ' Accepted purposal'
+        ]);
+         
+         broadcast(new NewNotification($request->all()));
+          return [
+              'owner_id'=>$proposal->owner_id,
+              'message' => Auth::user()->username . ' Accepted purposal',
+          ];
+    }  */
+        /*$purposal=new Purposal();
         $purposal->cover_letter = $request-> cover_letter;
         $purposal->budget = $request-> budget;
         $purposal->time = $request-> time;
@@ -63,7 +80,7 @@ class PurposalController extends Controller
         broadcast(new NewNotification($data));
 
         return redirect() -> back()  
-    }
+    }*/
 
  /**
      * Display the specified resource.

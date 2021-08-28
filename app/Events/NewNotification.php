@@ -21,24 +21,22 @@ class NewNotification implements ShouldBroadcast
     public $wner_id;
     public $developer_id;
     public $project_id;
-    public $message;
-
+     
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct($data)
     {
-      /*  $this ->cover_letter=$data['cover_letter'];
+        $this ->cover_letter=$data['cover_letter'];
         $this ->budget=$data['budget'];
         $this ->comment=$data['comment'];
         $this ->wner_id=$data['wner_id'];
         $this ->developer_id=$data['developer_id'];
         $this ->project_id=$data['project_id'];
-        $this->time = date("h:i A", strtotime(Carbon::now()));*/
-        $this -> message= $message ;
-
+        $this->time = date("h:i A", strtotime(Carbon::now()));
+         
 
     }
 

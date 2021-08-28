@@ -13,16 +13,15 @@ class CategoryController extends Controller
 
         return  $catagories;
     }
-
     public function show($name){
         $users = User::join('categories', 'users.category_id', '=', 'categories.id')
-         
-        ->select('users.*', 'categories.name as categeroyName ' )
+        ->select('users.*', 'categories.name as categryName')
         ->where('users.type','developer')
         ->where('categories.name' ,$name)
-          
         ->get();
 
         return $users  ;
     }
+    
+
 }
