@@ -141,5 +141,10 @@ class ProjectController extends Controller
         return $projects ;
     }
 
+    public function getClientProject($id){
+        return DB::table('projects')->where('owner_id', $id)->where('projects.status','processing')->get();
+
+    }
+
 
 }

@@ -77,6 +77,7 @@ Route::post('/project',[projectController::class,'store']);
 Route::post('/project/{id}',[ProjectController::class,'store']);
 Route::put('/project/{id}',[ProjectController::class,'update']);
 Route::delete('/project/{id}',[ProjectController::class,'destroy']);
+Route::get('/project/client/{id}',[ProjectController::class,'getClientProject']);
 
    //chat
 //    Route::get('/messages',[MessageController::class,'index']);
@@ -105,7 +106,10 @@ Route::put('/task/{id}',[TaskController::class,'update']);
    Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
    Route::get('/purposal/project/{project_id}/{userId}',[PurposalController::class,'getProposalOfProject']);
+   Route::get('/purposal/owner/{userId}',[PurposalController::class,'getProposalForClient']);
+   Route::get('/purposal/pending/{userId}',[PurposalController::class,'getPending']);
 
+   
    
    //tasks
    Route::get('/task',[TaskController::class,'index']);

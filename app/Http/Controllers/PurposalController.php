@@ -94,4 +94,21 @@ class PurposalController extends Controller
         $propsal = Purposal::where('purposals.project_id',$project_Id)->where('developer_id',$userId)->get();
         return $propsal ;
     }
+
+    public function getProposalForClient( $userId){
+        $propsal = Purposal::join('projects', 'purposals.project_id', '=', 'projects.id')
+        ->where('purposals.owner_id',$userId)->where('projects.status','processing')
+        ->select('projects.id as project_id','projects.title','purposals.id as proposal_id')
+        ->get();
+        return $propsal ;
+    }
+    public function getPending( $userId){
+        $propsal = Purposal::join('projects', 'purposals.project_id', '=', 'projects.id')
+        ->where('purposals.owner_id',$userId)->where('projects.status','pending')
+        ->select('projects.id as project_id','projects.title','purposals.id as proposal_id')
+        ->get();
+        return $propsal ;
+    }
+
+
 }
