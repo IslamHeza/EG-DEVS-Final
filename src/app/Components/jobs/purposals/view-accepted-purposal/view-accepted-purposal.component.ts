@@ -105,4 +105,8 @@ export class ViewAcceptedPurposalComponent implements OnInit {
       }
     );
   }
+
+  navigate(){
+    this.router.navigate(['/addTask/'+this.purposal.id]);
+  }
 }

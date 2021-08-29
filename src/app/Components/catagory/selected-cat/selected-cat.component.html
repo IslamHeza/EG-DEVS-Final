@@ -54,10 +54,10 @@
     <div class="container">
         <div class="row justify-content-center ">
             <div div *ngFor="let item of Developers | city:searchCity  | name:searchName | review:searchRate " class="card cd  col-md-4  col-lg-3 " style="width:16rem; height:18rem;">
-                <img src="http://localhost:8000/storage/{{item.image}}" class="card-img-top " alt="...">
+                <img src="http://localhost:8000/storage/users/{{item.image}}" class="card-img-top " alt="...">
                 <div class="card-body">
                     <div class="content ">
-                        <p><a href="doctor-single.html">{{item.name}} {{item.lname}} </a></p>
+                        <p><a href="/profile/{{item.id}}">{{item.name}} {{item.lname}} </a></p>
                         <p>{{item.city}}</p>
                         <p-rating [(ngModel)]="item.rate" [readonly]="true" [stars]="5" [cancel]="false"> </p-rating>
                     </div>

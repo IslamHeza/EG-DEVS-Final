@@ -41,7 +41,8 @@ export class AddReviewComponent implements OnInit {
     this.Review.project_id = this.route.snapshot.params.project_id;
     this.Review.rater_id = localStorage.getItem('id');
     this.Review.ratee_id = this.route.snapshot.params.developer_id;
-
+    console.log(this.Review.project_id);
+    
 
 
   }
@@ -62,15 +63,16 @@ export class AddReviewComponent implements OnInit {
       this.change_status();
     });
   }
+
   change_status(){
-    this.projectService.getProject(this.route.snapshot.params.id).subscribe(
+    this.projectService.getProject(this.route.snapshot.params.project_id).subscribe(
       (res) => {
         this.project = res;
         this.project.status = 'done';
         console.log(this.project.status);
 
         this.projectService.updateProject(
-          this.route.snapshot.params.id,
+          this.route.snapshot.params.project_id,
           this.project
         ).subscribe((res) => {});
       }

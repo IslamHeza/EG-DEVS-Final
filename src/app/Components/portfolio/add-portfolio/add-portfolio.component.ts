@@ -68,6 +68,8 @@ export class AddPortfolioComponent implements OnInit {
   onSubmit() {
     console.log(this.form.value);
     var formData: any = new FormData();
+    this.submitted=true ;
+    if(this.form.valid){
     formData.append('name', this.form.get('name')?.value);
     formData.append('description', this.form.get('description')?.value);
     formData.append('link', this.form.get('link')?.value);
@@ -77,6 +79,10 @@ export class AddPortfolioComponent implements OnInit {
       console.log(res);
       this.router.navigate(['listportfolio']);
     });
+  }else{
+    console.log('Enter Valid Data');
+    
+  }
   }
 
 }
