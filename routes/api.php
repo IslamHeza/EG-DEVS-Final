@@ -9,15 +9,13 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\PortfolioController;
-
-
-
+use App\Http\Controllers\ContactController;
+use App\Notifications\newNotification;
 
 use App\Models\Review;
 use App\Models\User;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\NewPasswordController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MessageController;
 
 use \App\Http\Controllers\UploadController;
@@ -206,5 +204,10 @@ Route::post('reset-password', [NewPasswordController::class, 'reset']);
 
 
 
-
+Route::post('/contact',[ContactController::class,'store']);
+/*Route::get('/event', function () {
+     
+   event(new NewNotification('Hey how are you beateful dodooo'));
+   
+});*/
 

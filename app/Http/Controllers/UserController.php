@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        return User::find($id);
+        $user = User::find($id);
+
+        $user['projectProcesses'] = Project::where('developer_id', $user->id)->where('status', 'processing')->count();
+        // $user->projectDevelopers->where('status', 'processing')->count()
+
+        $user['projectDone'] = Project::where('developer_id', $user->id)->where('status', 'done')->count();
+        // $user->projectClients->where('status', 'done')->count()
+
+        $projects = Project::where('developer_id', $user->id)->count();
+
+        $user['projectDonePercent'] = ($user['projectDone'] / $projects) * 100;
+        $user['projectProcessesPercent'] = ($user['projectProcesses'] / $projects) * 100;
+
+        $user['avrRate'] = (int)Project::where('developer_id', $user->id)->avg('rate');
+
+        return $user;
     }
 
     /**

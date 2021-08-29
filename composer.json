@@ -65,9 +65,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "repositories": {
-        "hooks": {
-            "type": "composer",
-            "url": "https://larapack.io"
-        }
+        
     }
 }

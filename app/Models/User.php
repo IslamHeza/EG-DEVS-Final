@@ -54,6 +54,14 @@ class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
         return $this->belongsToMany(Skill::class);
     }
 
+    public function projectDevelopers(){
+        return $this->hasMany(Project::class, 'developer_id', 'id');
+    }
+
+    public function projectClients(){
+        return $this->hasMany(Project::class, 'owner_id', 'id');
+    }
+
     protected $hidden = [
         'password',
         'remember_token',
