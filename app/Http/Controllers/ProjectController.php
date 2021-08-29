@@ -126,8 +126,14 @@ class ProjectController extends Controller
     //get active projects related with the developer
     public function active($id)
     {
-        return DB::table('projects')->where('developer_id', $id)->where('projects.status','processing')->get();
-    }
+            $propsal = Project::join('purposals', 'purposals.project_id', '=', 'projects.id')
+            ->where('purposals.developer_id',$id)->where('projects.status','processing')
+            ->select('projects.id as project_id','projects.title','purposals.id as proposal_id')
+            ->get();
+            return $propsal ;
+        }
+    
+      
 
     public function recent($category_id)
     {
@@ -145,6 +151,15 @@ class ProjectController extends Controller
         return DB::table('projects')->where('owner_id', $id)->where('projects.status','processing')->get();
 
     }
+
+    public function getPending( $userId){
+        $propsal = Project::where('owner_id',$userId)
+        ->where('status', 'pending')
+        ->get();
+        return $propsal ;
+    }
+
+
 
 
 }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class ReviewController extends Controller
+
+class ReviewController extends Controller 
 {
     /**
      * Display a listing of the resource.
@@ -47,6 +49,14 @@ class ReviewController extends Controller
         // $reviews = Review::where('ratee_id' , $id)
         // ->get();
         return $reviews;
+    }
+
+    function avgRate ($id){
+
+        $avg = Review::where('ratee_id', $id)
+        ->avg('rate');
+        User::where('id',$id)->update(['rate'=>intval($avg)]) ;
+        return $avg ;
     }
 
     /**

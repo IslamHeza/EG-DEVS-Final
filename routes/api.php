@@ -63,6 +63,7 @@ Route::get('/mostProjects',[ProjectController::class,'getMostProjects']);
 Route::get('/reviews',[ReviewController::class,'index']);
 Route::get('/HomeReviews',[ReviewController::class,'HomeReviews']);
 Route::get('/review/{id}',[ReviewController::class,'show']);
+Route::get('/review/rate/{id}',[ReviewController::class,'avgRate']);
 
 //catagories
 
@@ -78,6 +79,7 @@ Route::post('/project/{id}',[ProjectController::class,'store']);
 Route::put('/project/{id}',[ProjectController::class,'update']);
 Route::delete('/project/{id}',[ProjectController::class,'destroy']);
 Route::get('/project/client/{id}',[ProjectController::class,'getClientProject']);
+Route::get('/project/pending/{userId}',[ProjectController::class,'getPending']);
 
    //chat
 //    Route::get('/messages',[MessageController::class,'index']);
@@ -87,10 +89,13 @@ Route::post('/realTimeChat/{reciever_id}',[ChatController::class,'message']);
 Route::get('/realTimeChat/{id1}/{id2}',[ChatController::class,'getmessage']);
 
 //tasks
-Route::post('/task/{id}',[TaskController::class,'store']);
-Route::get('/task',[TaskController::class,'index']);
-Route::get('/task/{id}',[TaskController::class,'getTask']);
-Route::put('/task/{id}',[TaskController::class,'update']);
+// Route::post('/task/{id}',[TaskController::class,'store']);
+// Route::get('/task',[TaskController::class,'index']);
+// Route::get('/task/{id}',[TaskController::class,'getTask']);
+// Route::put('/task/{id}',[TaskController::class,'update']);
+// Route::get('/task/rate/{id}',[TaskController::class,'avgRate']);
+
+
 
    //portofolios
 //    Route::get('/portfolio/',[PortfolioController::class,'index']);
@@ -107,7 +112,7 @@ Route::put('/task/{id}',[TaskController::class,'update']);
    Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
    Route::get('/purposal/project/{project_id}/{userId}',[PurposalController::class,'getProposalOfProject']);
    Route::get('/purposal/owner/{userId}',[PurposalController::class,'getProposalForClient']);
-   Route::get('/purposal/pending/{userId}',[PurposalController::class,'getPending']);
+   // Route::get('/purposal/pending/{userId}',[PurposalController::class,'getPending']);
 
    
    
@@ -122,6 +127,7 @@ Route::put('/task/{id}',[TaskController::class,'update']);
    //contact
    Route::post('/contact',[ContactController::class,'store']);
 
+   // Route::put('/users/rate/{id}/{rate}',[UserController::class,'updateRate']);
 
 
 /*******auth***********/
@@ -132,6 +138,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
     Route::put('/users/{id}',[UserController::class,'update']);
     Route::delete('/users/{id}',[UserController::class,'destroy']);
     Route::get('/users/category/{id}',[UserController::class,'getCategory']);
+   //  Route::put('/users/rate/{id}/{rate}',[UserController::class,'updateRate']);
 
 
     //projects
@@ -161,7 +168,7 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
 
 
    Route::delete('/task/{id}',[TaskController::class,'destroy']);
-   Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
+   // Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
 
     //logout
     Route::post('/logout',[AuthController::class,'logout']);
@@ -170,7 +177,11 @@ Route::group(['middleware' => ['auth:sanctum'] ], function() {
 
 
 /*==============================================================================================================================================*/
+// Route::get('/purposal/all/{id}',[PurposalController::class,'index']);
+// Route::get('/purposal/{id}',[PurposalController::class,'getPurposal']);
 
+Route::post('/task/accept/{id}',[TaskController::class,'makeAccepted']);
+Route::put('/users/rate/{id}/{rate}',[UserController::class,'updateRate']);
 
 //email vertification
 

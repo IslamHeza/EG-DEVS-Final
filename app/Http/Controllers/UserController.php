@@ -86,5 +86,8 @@ class UserController extends Controller
         return User::select('category_id')->where('id',$user_id)->get();
     }
 
+    public function updateRate($id , $rate){
+        return User::where('id',$id)->update(['rate' => $rate]);
+    }
 
 }

@@ -61,21 +61,18 @@ class TaskController extends Controller
         return response()->download(public_path('/storage/Tasks/' . $fileName));
     }
 
-    function makeAccepted( $id)
+    function makeAccepted($id)
     {
-        // $task = new Task() ;
-        // $task = Task::where($project_id) ;
+
         $task = Task::where('project_id', $id)->update(['accepted' => 1]);
-        return $task ;
 
-
-        // $task->accepted = 1;
-        // $task->save();
-        // return $task ;
-
+        return $task;
     }
 
-
+    function avgRate ($id){
+        $avg = Task::where('ratee_id', $id)->avg('ratee_id');
+        return $avg ;
+    }
 
 
 
