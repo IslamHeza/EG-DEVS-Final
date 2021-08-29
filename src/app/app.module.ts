@@ -111,7 +111,8 @@ import { AddReviewComponent } from './Components/jobs/add-review/add-review.comp
 import { MessagesComponent } from './Components/chat/messages/messages.component';
 import { MessageComponent } from './Components/messages/message/message.component';
 import { userTypeGuard } from './userType.guard';
-
+import { ReviewPipe } from './Components/catagory/selected-cat/review.pipe';
+ 
 
 
 @NgModule({
@@ -174,7 +175,7 @@ import { userTypeGuard } from './userType.guard';
     AddReviewComponent,
     MessagesComponent,
     MessageComponent,
-
+    ReviewPipe,
 
 
   ],
